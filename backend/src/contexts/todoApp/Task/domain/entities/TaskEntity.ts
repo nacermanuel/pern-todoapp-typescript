@@ -1,6 +1,6 @@
 interface TaskEntity{
     id: string;
-    nombre: string;
+    name: string;
     description: string;
     userId: string;
 }

@@ -5,6 +5,13 @@ import helmet from 'helmet';
 import cors from 'cors'
 import { db_sequelize } from '../../config/connectDataBase';
 
+
+
+import { SequelizeUserModel } from '../../contexts/todoApp/User/infrastructure/persistence/sequelize/SequelizeUserModel';
+import { mainRouter } from './routers';
+
+
+
 //CONFIG VARIABLES DE ENTORNO
 dotenv.config({ path: resolve(__dirname, "../../../.env") })
 
@@ -26,13 +33,8 @@ app.use(helmet());
 app.use(cors())
 app.use(json())
 app.use(urlencoded({ extended: true }))
+app.use("/api",mainRouter)
 
-
-
-//RUTA DE PRUEBA -- ELIMINAR LUEGO
-app.get('/', (req, res) => {
-  res.send('Express + TypeScript Server');
-});
 
 
 //INICIANDO EL SERVIDOR

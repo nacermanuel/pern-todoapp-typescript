@@ -1,10 +1,9 @@
 import { Model, Column, Table, PrimaryKey, AllowNull, DataType, ForeignKey,BelongsTo } from "sequelize-typescript";
 import { TaskEntity } from "../../../domain/entities/TaskEntity";
-import { db_sequelize } from "../../../../../../config/connectDataBase";
-import { UserModel } from "../../../../User/infrastructure/persistence/sequelize/SequelizeUserModel";
+import { SequelizeUserModel } from "../../../../User/infrastructure/persistence/sequelize/SequelizeUserModel";
 
 @Table({modelName: 'Task'})
-class TaskModel extends Model<TaskEntity> implements TaskEntity{
+class SequelizeTaskModel extends Model<TaskEntity> implements TaskEntity{
 
     @PrimaryKey
     @AllowNull(false)
@@ -13,22 +12,22 @@ class TaskModel extends Model<TaskEntity> implements TaskEntity{
 
     @AllowNull(false)
     @Column({type: DataType.STRING})
-    nombre!: string;
+    name!: string;
 
     @AllowNull(false)
     @Column({type: DataType.STRING})
     description!: string;
 
     @AllowNull(false)
-    @ForeignKey(()=> UserModel)
+    @ForeignKey(()=> SequelizeUserModel)
     @Column({type: DataType.STRING})
     userId!: string;
 
-    @BelongsTo(()=> UserModel)
-    user!: UserModel ;
+    @BelongsTo(()=> SequelizeUserModel)
+    user!: SequelizeUserModel ;
 
 }
 
 //TaskModel.init( {},{tableName: 'PRUEBATAREA',db_sequelize})
 
-export { TaskModel };
+export { SequelizeTaskModel };
