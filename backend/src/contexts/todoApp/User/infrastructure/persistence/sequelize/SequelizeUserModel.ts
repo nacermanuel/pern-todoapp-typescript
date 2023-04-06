@@ -1,5 +1,6 @@
-import { Model, Column, Table, PrimaryKey, DataType, AllowNull } from 'sequelize-typescript'
+import { Model, Column, Table, PrimaryKey, DataType, AllowNull, HasMany } from 'sequelize-typescript'
 import { UserEntity } from '../../../domain/entities/UserEntity'
+import { TaskModel } from '../../../../Task/infrastructure/persistence/sequelize/SequelizeTaskModel';
 
 @Table({modelName: 'User'})
 class UserModel extends Model<UserEntity> implements UserEntity{
@@ -16,9 +17,8 @@ class UserModel extends Model<UserEntity> implements UserEntity{
     @Column({type: DataType.STRING})
     lastName!: string;
     
-    @AllowNull(true)
-    @Column({type: DataType.ARRAY(DataType.STRING),})
-    tasks!: string[];
+    @HasMany(() => TaskModel)
+    tasks!: TaskModel[]
 }
 
 export { UserModel };
