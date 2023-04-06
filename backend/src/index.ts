@@ -1,1 +1,0 @@
-console.log('OJOOO este es el archivo inicial de prueba')
