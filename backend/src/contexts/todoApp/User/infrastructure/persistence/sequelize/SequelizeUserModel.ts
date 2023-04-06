@@ -1,7 +1,7 @@
 import { Model, Column, Table, PrimaryKey, DataType, AllowNull } from 'sequelize-typescript'
 import { UserEntity } from '../../../domain/entities/UserEntity'
 
-@Table
+@Table({modelName: 'User'})
 class UserModel extends Model<UserEntity> implements UserEntity{
     @PrimaryKey
     @AllowNull(false)
