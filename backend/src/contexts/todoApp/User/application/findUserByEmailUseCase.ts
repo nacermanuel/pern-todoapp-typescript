@@ -10,7 +10,8 @@ class findUserByEmailUseCase {
 
     async run(email: string): Promise<UserEntity | null>{
         const userFound = this._userRepository.findByEmail(email)
-        //AQUI ESTA MOSTRANDO UN ERROR CUANDO LE ESPECIFICO EL TIPO DE USERFOUND        
+        
+        //If userFound === null (User doesnt exist), return null        
         if(!userFound){
             return null
         }

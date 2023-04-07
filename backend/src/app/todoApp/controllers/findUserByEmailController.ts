@@ -17,6 +17,12 @@ class findUserByEmailController {
 
         const data = await this._findUserbyemailUseCase.run(email) ;
 
+        //If data === null (User doesnt exist), return null 
+        if(!data){
+            res.send('findUserbyEmailController Response: Error User with this does not exist')
+            throw new Error("findUserbyEmailController Response: Error User with this does not exist")
+        }
+
         res.status(200).json(data);
     }   
 }

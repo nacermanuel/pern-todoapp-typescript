@@ -13,6 +13,7 @@ class SequelizeUserImpl implements UserRepository{
     async findByEmail(email: string): Promise<UserEntity | null> {
         const user: UserEntity | null = await SequelizeUserModel.findOne({where:{email: email}})
 
+        //If user not found, retur null
         if(!user){
             return null
         }

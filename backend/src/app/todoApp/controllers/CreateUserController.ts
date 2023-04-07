@@ -24,12 +24,19 @@ class CreateUserController {
             typeof lastName !== "string" ||
             typeof email !== "string" 
           ) {
-            throw new Error("Error user data fields")
+            res.send('CreateUserController Response: Error user data fields incorrect')
+            throw new Error("CreateUserController Response: Error user data fields incorrect")
           }
           
         const user = new UserValueObject(id,name,lastName,email) ;
 
         const data = await this._creteUserUseCase.run(user) ;
+
+        //If data == null, User with this email already exist , return null
+        if(!data){
+          res.send('CreateUserController Response: Error user mail already exist')
+          throw new Error("CreateUserController Response: Error user mail already exist")
+        }
 
         res.status(200).json(data) ;
     }
