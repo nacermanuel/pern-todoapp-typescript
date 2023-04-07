@@ -9,6 +9,13 @@ class CreateUserUseCase {
     }
 
     async run(user: UserEntity): Promise<UserEntity>{
+        
+        const userFound = await this._userRepository.findByEmail(user.email)
+        
+        if(userFound){
+            throw new Error(`El usuario con ese email ya existe`)
+        }
+
         const newUser = this._userRepository.create(user);
         return newUser
     }
