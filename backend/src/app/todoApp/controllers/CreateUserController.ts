@@ -11,13 +11,22 @@ class CreateUserController {
     private readonly _creteUserUseCase: CreateUserUseCase ;
 
     constructor(){
-        this._userRepository = new SequelizeUserImpl ;
+        this._userRepository = new SequelizeUserImpl() ;
         this._creteUserUseCase = new CreateUserUseCase(this._userRepository) ;
     }
 
     async run(req: Request, res: Response): Promise<void>{
         const { id, name, lastName, email } = req.body;
 
+        if (
+            typeof id !== "string" ||
+            typeof name !== "string" ||
+            typeof lastName !== "string" ||
+            typeof email !== "string" 
+          ) {
+            throw new Error("Error user data fields")
+          }
+          
         const user = new UserValueObject(id,name,lastName,email) ;
 
         const data = await this._creteUserUseCase.run(user) ;
