@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { CreateUserUseCase } from "../../../contexts/todoApp/User/application/CreateUserUseCase";
 import { SequelizeUserImpl } from "../../../contexts/todoApp/User/infrastructure/persistence/sequelize/SequelizeUserImpl";
 import { UserValueObject } from "../../../contexts/todoApp/User/domain/valueObjects/UserValueObject";
+import { v4 as uuidv4 } from 'uuid';
 
 
 class CreateUserController {
@@ -16,10 +17,9 @@ class CreateUserController {
     }
 
     async run(req: Request, res: Response): Promise<void>{
-        const { id, name, lastName, email } = req.body;
+        const { name, lastName, email } = req.body;
 
         if (
-            typeof id !== "string" ||
             typeof name !== "string" ||
             typeof lastName !== "string" ||
             typeof email !== "string" 
@@ -27,6 +27,8 @@ class CreateUserController {
             res.send('CreateUserController Response: Error user data fields incorrect')
             throw new Error("CreateUserController Response: Error user data fields incorrect")
           }
+
+        const id = uuidv4()
           
         const user = new UserValueObject(id,name,lastName,email) ;
 
