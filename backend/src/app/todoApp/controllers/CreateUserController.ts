@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import { CreateUserUseCase } from "../../../contexts/todoApp/User/application/CreateUserUseCase";
-import { UserRepository } from "../../../contexts/todoApp/User/domain/repository/UserRepository";
 import { SequelizeUserImpl } from "../../../contexts/todoApp/User/infrastructure/persistence/sequelize/SequelizeUserImpl";
 import { UserValueObject } from "../../../contexts/todoApp/User/domain/valueObjects/UserValueObject";
 
@@ -17,9 +16,9 @@ class CreateUserController {
     }
 
     async run(req: Request, res: Response): Promise<void>{
-        const { id, name, lastName } = req.body;
+        const { id, name, lastName, email } = req.body;
 
-        const user = new UserValueObject(id,name,lastName) ;
+        const user = new UserValueObject(id,name,lastName,email) ;
 
         const data = await this._creteUserUseCase.run(user) ;
 
