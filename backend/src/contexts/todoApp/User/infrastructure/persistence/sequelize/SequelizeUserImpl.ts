@@ -20,6 +20,12 @@ class SequelizeUserImpl implements UserRepository{
 
         return user
     }
+
+    async getAll(): Promise<UserEntity[]> {
+        const users = await SequelizeUserModel.findAll() ;
+
+        return users
+    }
 }
 
 export { SequelizeUserImpl };
