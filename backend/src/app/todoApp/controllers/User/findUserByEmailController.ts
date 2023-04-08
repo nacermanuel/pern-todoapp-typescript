@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { SequelizeUserImpl } from "../../../contexts/todoApp/User/infrastructure/persistence/sequelize/SequelizeUserImpl";
-import { findUserByEmailUseCase } from "../../../contexts/todoApp/User/application/findUserByEmailUseCase";
+import { SequelizeUserImpl } from "../../../../contexts/todoApp/User/infrastructure/persistence/sequelize/SequelizeUserImpl";
+import { findUserByEmailUseCase } from "../../../../contexts/todoApp/User/application/findUserByEmailUseCase";
 
 
 class findUserByEmailController {

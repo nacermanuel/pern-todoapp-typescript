@@ -1,7 +1,7 @@
 import { Request, Response, Router } from "express";
-import { CreateUserController } from "../controllers/CreateUserController";
-import { findUserByEmailController } from "../controllers/findUserByEmailController";
-import { FindAllUsersController } from "../controllers/FindAllUsersController";
+import { CreateUserController } from "../controllers/User/CreateUserController";
+import { findUserByEmailController } from "../controllers/User/findUserByEmailController";
+import { FindAllUsersController } from "../controllers/User/FindAllUsersController";
 
 const userRouter = Router() ;
 

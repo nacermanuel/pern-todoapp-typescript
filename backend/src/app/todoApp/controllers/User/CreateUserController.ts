@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
-import { CreateUserUseCase } from "../../../contexts/todoApp/User/application/CreateUserUseCase";
-import { SequelizeUserImpl } from "../../../contexts/todoApp/User/infrastructure/persistence/sequelize/SequelizeUserImpl";
-import { UserValueObject } from "../../../contexts/todoApp/User/domain/valueObjects/UserValueObject";
+import { CreateUserUseCase } from "../../../../contexts/todoApp/User/application/CreateUserUseCase";
+import { SequelizeUserImpl } from "../../../../contexts/todoApp/User/infrastructure/persistence/sequelize/SequelizeUserImpl";
+import { UserValueObject } from "../../../../contexts/todoApp/User/domain/valueObjects/UserValueObject";
 import { v4 as uuidv4 } from 'uuid';
 
 
