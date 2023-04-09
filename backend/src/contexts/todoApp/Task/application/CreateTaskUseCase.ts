@@ -8,8 +8,12 @@ class CreateTaskUseCase {
         this._taskRepository = task
     }
 
-    async run(task:TaskEntity): Promise<TaskEntity>{
+    async run(task:TaskEntity): Promise<TaskEntity | null>{
         const newTask = await this._taskRepository.create(task);
+
+        if(!newTask){
+            return null
+        }
         return newTask
     }
 }
