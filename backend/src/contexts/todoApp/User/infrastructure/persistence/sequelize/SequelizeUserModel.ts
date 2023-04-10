@@ -20,6 +20,10 @@ class SequelizeUserModel extends Model<UserEntity> implements UserEntity{
     @AllowNull(false)
     @Column({type: DataType.STRING})
     email!: string;
+
+    @AllowNull(false)
+    @Column({type: DataType.STRING})
+    password!: string;
     
     @HasMany(() => SequelizeTaskModel)
     tasks!: SequelizeTaskModel[]

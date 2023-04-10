@@ -17,12 +17,13 @@ class CreateUserController {
     }
 
     async run(req: Request, res: Response): Promise<void>{
-        const { name, lastName, email } = req.body;
+        const { name, lastName, email, password } = req.body;
 
         if (
             typeof name !== "string" ||
             typeof lastName !== "string" ||
-            typeof email !== "string" 
+            typeof email !== "string" ||
+            typeof password !== "string"
           ) {
             res.send('CreateUserController Response: Error user data fields incorrect')
             throw new Error("CreateUserController Response: Error user data fields incorrect")
@@ -30,7 +31,7 @@ class CreateUserController {
 
         const id = uuidv4()
           
-        const user = new UserValueObject(id,name,lastName,email) ;
+        const user = new UserValueObject(id,name,lastName,email,password) ;
 
         const data = await this._creteUserUseCase.run(user) ;
 
