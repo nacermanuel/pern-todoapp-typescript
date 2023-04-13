@@ -1,0 +1,22 @@
+body{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;
+    background-color:hsl(135, 5%, 85%);
+}
+
+.container{
+    display: flex;
+    flex-flow: column;
+    margin: 5px;
+    gap:10px;
+    height: 100vh;
+}
+
+.subcontainer_one{
+    height: 60%;
+    background-color: blue;
+}
+
+.subcontainer_two{
+    height: 40%;
+    background-color: rgb(101, 179, 146);
+}
