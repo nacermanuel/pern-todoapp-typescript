@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
-import reduxReducer from './slice.js'
+import reduxReducer from './CLONslice.js'
 
 export const store = configureStore({
   reducer: {
