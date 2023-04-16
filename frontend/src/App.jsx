@@ -1,14 +1,17 @@
-import { useState } from 'react'
-import Home from './assets/pages/Home/Home.jsx'
+import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
+import AppRouter from './AppRouter';
 
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <>
-      <Home/>
-    </>
+    //FALTA AGREGAR EL STORE
+    //<Provider>
+      <BrowserRouter>
+        <AppRouter/>
+      </BrowserRouter>
+    //</Provider>
   )
 }
 

@@ -5,10 +5,15 @@ export default function Home() {
   return (
     <div className='container'>
         <div className='subcontainer_one'>
-            ¿Necesitas dejas de procrastinar? ddd
+          <p>¿Necesitas dejas de procrastinar?</p>
+          <p>Estás en el lugar correcto.</p>
         </div>
         <div className='subcontainer_two'>
-            Empeza a ser productivo
+            <div className='subcontainer_botones'>
+              <button>Boton 1</button>
+              <button>Boton 2</button>
+            </div>
+            <p>Empeza a ser productivo!</p>
         </div>
     </div>
   )
