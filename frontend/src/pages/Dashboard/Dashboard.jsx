@@ -7,7 +7,7 @@ import Navbar from '../../components/navbar/navbar'
 export default function Dashboard() {
   return (
     <div className='container'>
-        <Navbar/>
+        <Navbar/> 
         <div className='innerBody'>
             <div className='leftbody'>
                 <PendingTask/>
