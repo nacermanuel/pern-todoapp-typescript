@@ -2,7 +2,7 @@ import React from 'react' ;
 import { useSelector, useDispatch } from 'react-redux' ;
 
 // IMPORTA LAS ACCIONES A DESPACHAR
-import { increment } from '../../../redux/slice';
+import { increment } from '../../redux/slice.js'
 
 export default function Pruebaredux() {
 
