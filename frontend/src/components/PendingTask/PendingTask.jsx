@@ -7,10 +7,10 @@ export default function PendingTask() {
   return (
     <div className='pendingTasktable'>
       <div className='listAll'>
-          <TaskItem/>
-          <TaskItem/>
-          <TaskItem/>
-          <TaskItem/>
+          <TaskItem title={'ejemplo'}/>
+          <TaskItem title={'ejemplo'}/>
+          <TaskItem title={'ejemplo'}/>
+          <TaskItem title={'ejemplo'}/>
       </div>
       <div>
         <CreateTask/>

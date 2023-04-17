@@ -15,6 +15,8 @@ export default function Home() {
             </div>
             <p>Empeza a ser productivo!</p>
         </div>
+
+        <p>PONER OPCION A QUE INICIEN SESION CON USUARIOS CREADOS PARA MOSTRAR GUARDO POR SESION</p>
     </div>
   )
 }

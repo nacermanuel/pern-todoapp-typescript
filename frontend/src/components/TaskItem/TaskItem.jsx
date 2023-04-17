@@ -1,10 +1,11 @@
 import React from 'react'
 import './TaskItem.css'
 
-export default function TaskItem() {
+export default function TaskItem(props) {
   return (
     <div className='taskitem'>
-        TaskItem
+        <p>{props.title}</p>
+        <button>Ver</button>
     </div>
   )
 }

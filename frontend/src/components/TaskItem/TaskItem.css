@@ -2,4 +2,15 @@
     background-color: darkgreen;
     height: 10vh;
     width: 97%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+button{
+    margin-right: 5px
+
+}
+p{
+    margin-left: 5px;
 }
