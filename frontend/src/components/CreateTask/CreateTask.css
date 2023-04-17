@@ -2,4 +2,22 @@
     background-color: brown;
     height: 10vh;
     margin: 0 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
+input{
+    height: -webkit-fill-available;
+    width: 80%;
+    font-size: large;
+    margin: 5px;
+}
+
+img{
+    height: 6vh;
+    width: auto;
+    padding: 5px;
+    cursor: pointer;
+}
+
