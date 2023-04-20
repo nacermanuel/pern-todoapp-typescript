@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body{
     font-family: 'Trebuchet MS' ;
     background-color:rgb(215, 219, 216);

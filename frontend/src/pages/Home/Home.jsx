@@ -1,15 +1,15 @@
 import React from 'react'
-import './Home.css'
+//import './Home.css'
 
 export default function Home() {
   return (
-    <div className='container'>
-        <div className='subcontainer_one'>
+    <div className='flex flex-col m-[5px] gap-[10px] h-[95vh]'>
+        <div className=' h-[60%] bg-[#ffffff] flex flex-col justify-center items-center'>
           <p>¿Necesitas dejas de procrastinar?</p>
           <p>Estás en el lugar correcto.</p>
         </div>
-        <div className='subcontainer_two'>
-            <div className='subcontainer_botones'>
+        <div className='h-[40%] bg-[#ffffff] flex flex-col justify-center items-center'>
+            <div className='w-[50%] flex flex-row justify-center items-center gap-[15px]'>
               <button>Boton 1</button>
               <button>Boton 2</button>
             </div>
