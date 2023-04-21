@@ -4,6 +4,7 @@ import Stack from '@mui/joy/Stack';
 import TaskItem from './TaskItem'
 
 import { mockTasks } from '../mocks/mockTask';
+import CreateTask from './CreateTask';
 
 export default function TablePendingTask() {
   return (
@@ -17,7 +18,7 @@ export default function TablePendingTask() {
         </Stack>
       </div>
       <div>
-        hola
+        <CreateTask/>
       </div>
     </div>
     //   <div className='listAll'>
