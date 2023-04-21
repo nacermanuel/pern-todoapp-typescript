@@ -4,7 +4,7 @@ import React from 'react'
 
 export default function TaskItem(props) {
   return (
-    <div className='bg-fuchsia-400 h-[10vh] w-[97%] flex items-center justify-around '>
+    <div className='bg-white h-[10vh] w-[97%] flex items-center justify-around rounded-md'>
         <p>{props.title}</p>
         <Button variant="contained">Botón</Button>
     </div>

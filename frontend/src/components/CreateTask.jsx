@@ -4,7 +4,7 @@ import { Button } from '@mui/material';
 
 export default function CreateTask() {
   return (
-    <div className='bg-amber-400 h-[10vh] mx-[5px] flex items-center justify-center'>
+    <div className='h-[10vh] mx-[5px] flex items-center justify-center m-[10px] gap-1.5'>
         <TextField
           label="Nueva Tarea"
           id="outlined-size-small"
