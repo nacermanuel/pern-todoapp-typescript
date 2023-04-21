@@ -1,6 +1,6 @@
 import React from 'react'
 import './CreateTask.css'
-import icon1 from '../../../public/mas.png'
+import icon1 from '../../resources/mas.png'
 
 export default function CreateTask() {
   return (
