@@ -1,10 +1,10 @@
-import React from 'react'
 import Stack from '@mui/joy/Stack';
+import React from 'react'
 
-import TaskItem from './TaskItem'
 
 import { mockTasks } from '../mocks/mockTask';
 import CreateTask from './CreateTask';
+import TaskCard from './TaskCard';
 
 export default function TablePendingTask() {
   return (
@@ -13,7 +13,7 @@ export default function TablePendingTask() {
       <div className=' h-[63vh] overflow-y-auto'>
         <Stack spacing={1} sx={{ alignItems:'center', paddingTop:'5px' }} > {/*https://mui.com/material-ui/react-stack/ */}
           {mockTasks.map(e => {
-            return <TaskItem title={e.name}/>
+            return <TaskCard data={e}/>
           })}
         </Stack>
       </div>
@@ -21,15 +21,5 @@ export default function TablePendingTask() {
         <CreateTask/>
       </div>
     </div>
-    //   <div className='listAll'>
-    //       <TaskItem title={'ejemplo'}/>
-    //       <TaskItem title={'ejemplo'}/>
-    //       <TaskItem title={'ejemplo'}/>
-    //       <TaskItem title={'ejemplo'}/>
-    //   </div>
-    //   <div>
-    //     <CreateTask/>
-    //   </div>
-    //
   )
 }
