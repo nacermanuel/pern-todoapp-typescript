@@ -1,5 +1,5 @@
-import React from 'react'
 import Avatar from '@mui/material/Avatar';
+import React from 'react'
 
 
 export default function Navbar() {
