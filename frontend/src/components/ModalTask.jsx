@@ -35,7 +35,7 @@ export default function ModalTask({open , onClose, data}) {
 
             </Typography>
             <TextField id="outlined-basic" label="Título" variant="outlined" defaultValue={data.name} sx={{width:"100%"}}/>
-            <TextField id="outlined-basic" label="Descripción" variant="outlined" defaultValue={data.name} multiline rows={4} sx={{width:"100%"}}/>
+            <TextField id="outlined-basic" label="Descripción" variant="outlined" defaultValue={data.description} multiline rows={4} sx={{width:"100%"}}/>
 
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
               Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
