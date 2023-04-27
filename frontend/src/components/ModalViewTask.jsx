@@ -26,7 +26,7 @@ const style = {
   gap: 2
 };
 
-export default function ModalTask({open , onClose, data}) {
+export default function ModalViewTask({open , onClose, data}) {
 
   return (
         <Modal
@@ -43,10 +43,12 @@ export default function ModalTask({open , onClose, data}) {
               Aqui voy a poner una frase motivaiconal.
             </Typography>
 
-            {/* Aqui podria venir el boton en disable y si hay cambios se activa */}
+
               <Box sx={{display: 'flex', flexDirection: 'row', width: '55vw', justifyContent: 'center', gap: '5vw'}}>
+            {/* El boton esta disable si no hay cambios */}                
                 <Button variant="contained">Actualizar</Button>
                 <Button variant="outlined" color="error" startIcon={<DeleteIcon />}>Eliminar</Button>
+            {/* El boton esta disable si hay alguna en HACIENDO AHORA */}    
                 <Button variant="contained" endIcon={<SendIcon />} color="secondary">Hacer Ahora</Button>
               </Box>
 

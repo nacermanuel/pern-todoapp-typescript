@@ -3,7 +3,7 @@ import React from 'react'
 
 
 import { mockTasks } from '../mocks/mockTask';
-import CreateTask from './CreateTask';
+import InputCreateTask from './InputCreateTask';
 import TaskCard from './TaskCard';
 
 export default function TablePendingTask() {
@@ -18,7 +18,7 @@ export default function TablePendingTask() {
         </Stack>
       </div>
       <div>
-        <CreateTask/>
+        <InputCreateTask/>
       </div>
     </div>
   )

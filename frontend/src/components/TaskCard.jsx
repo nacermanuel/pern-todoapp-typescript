@@ -1,6 +1,6 @@
 import Button from '@mui/material/Button';
 import * as React from 'react';
-import ModalTask from './ModalTask';
+import ModalViewTask from './ModalViewTask';
 
 
 export default function TaskCard({data}) {
@@ -12,7 +12,7 @@ export default function TaskCard({data}) {
     <div className='bg-white h-[10vh] w-[97%] flex items-center justify-around rounded-md'>
         <p>{data.name}</p>
         <Button onClick={handleOpen} variant="contained">Ver</Button>        
-        <ModalTask open={open} onClose={handleClose} data={data}/>
+        <ModalViewTask open={open} onClose={handleClose} data={data}/>
     </div>
   )
 }
