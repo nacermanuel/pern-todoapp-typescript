@@ -1,9 +1,18 @@
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import Navbar from '../../components/Navbar'
 import TablePendingTask from '../../components/TablePendingTask'
-
+import { fetchTareas } from '../../redux/feature/tareasSlice'
 
 const Dashboard = () => {
+
+  const idUsuario = 1 // ESTO DEBE SER TOMADO DE LA SESION INICIADA
+  const dispatch = useDispatch();
+
+  React.useEffect(()=>{
+    dispatch(fetchTareas(idUsuario))
+  },[])
+
   return (
     <div>
         <Navbar/>

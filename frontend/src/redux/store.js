@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit'
-import reduxReducer from './slice.js'
+import tareasReducer from './feature/tareasSlice.js'
 
 export const store = configureStore({
   reducer: {
-    counter: reduxReducer,
+    tareas: tareasReducer,
   },
 })
