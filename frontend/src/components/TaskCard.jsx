@@ -12,7 +12,7 @@ export default function TaskCard({data}) {
     <div className='bg-white h-[10vh] w-[97%] flex items-center justify-around rounded-md'>
         <p>{data.name}</p>
         <Button onClick={handleOpen} variant="contained">Ver</Button>        
-        <ModalViewTask open={open} onClose={handleClose} data={data}/>
+        {open && <ModalViewTask open={open} onClose={handleClose} data={data}/>}
     </div>
   )
 }

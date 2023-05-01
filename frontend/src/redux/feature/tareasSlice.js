@@ -15,10 +15,12 @@ const tareasSlice = createSlice({
     initialState,
     reducers: {
         updateTarea: (state, action)=>{
-
             const index = state.tareas.findIndex((e) => e.id == action.payload.id)
             state.tareas[index] = action.payload
         },
+        deleteTarea: (state, action) => {
+            state.tareas = [...state.tareas.filter(e=> e.id != action.payload)]
+        }
     },
     extraReducers: builder => {
         builder.addCase(fetchTareas.pending, (state) => {
@@ -39,4 +41,4 @@ const tareasSlice = createSlice({
 
 export default tareasSlice.reducer ;
 export { fetchTareas}
-export const { updateTarea } = tareasSlice.actions
+export const { updateTarea, deleteTarea } = tareasSlice.actions

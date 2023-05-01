@@ -8,7 +8,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import SendIcon from '@mui/icons-material/Send';
 import * as React from 'react';
 import { useDispatch } from 'react-redux';
-import { updateTarea } from '../redux/feature/tareasSlice';
+import { updateTarea, deleteTarea } from '../redux/feature/tareasSlice';
 
 const style = {
   position: 'absolute',
@@ -31,6 +31,7 @@ const style = {
 export default function ModalViewTask({open , onClose, data}) {
   const [title, setTitle] = React.useState(data.name);
   const [description, setDescripcion] = React.useState(data.description);
+  const [confirmation,setConfirmation] = React.useState(true)
   const dispatch = useDispatch();
 
   const changeTitle = (e) => {
@@ -52,6 +53,10 @@ export default function ModalViewTask({open , onClose, data}) {
     dispatch(updateTarea({...data, name: title,description:description}))
   }
 
+  const buttonDelete = (e)=>{
+    onClose()
+    dispatch(deleteTarea(e.target.id))
+  }
 
   return (
         <Modal
@@ -72,7 +77,12 @@ export default function ModalViewTask({open , onClose, data}) {
               <Box sx={{display: 'flex', flexDirection: 'row', width: '55vw', justifyContent: 'center', gap: '5vw'}}>
             {/* El boton esta disable si no hay cambios */}                
                 <Button variant="contained" onClick={handleUpdate}>Actualizar</Button>
-                <Button variant="outlined" color="error" startIcon={<DeleteIcon />}>Eliminar</Button>
+                { confirmation ? 
+                  <Button id={data.id} onClick={() => setConfirmation(!confirmation)} variant="outlined" color="error" startIcon={<DeleteIcon />}>Eliminar</Button> 
+                  :
+                  <Button id={data.id} onClick={buttonDelete} variant="contained" color="error">Seguro desea eliminar?</Button>
+                }
+           
             {/* El boton esta disable si hay alguna en HACIENDO AHORA */}    
                 <Button variant="contained" endIcon={<SendIcon />} color="secondary">Hacer Ahora</Button>
               </Box>
