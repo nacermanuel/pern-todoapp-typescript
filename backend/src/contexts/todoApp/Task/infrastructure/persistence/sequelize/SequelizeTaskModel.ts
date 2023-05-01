@@ -2,6 +2,7 @@ import { Model, Column, Table, PrimaryKey, AllowNull, DataType, ForeignKey,Belon
 import { TaskEntity } from "../../../domain/entities/TaskEntity";
 import { SequelizeUserModel } from "../../../../User/infrastructure/persistence/sequelize/SequelizeUserModel";
 
+
 @Table({modelName: 'Task'})
 class SequelizeTaskModel extends Model<TaskEntity> implements TaskEntity{
 
@@ -24,8 +25,8 @@ class SequelizeTaskModel extends Model<TaskEntity> implements TaskEntity{
     userId!: string;
 
     @AllowNull(false)
-    @Column({type: DataType.STRING})
-    date!: string;
+    @Column({type: DataType.JSON})
+    date!: object;
 
     @AllowNull(false)
     @Column({type: DataType.BOOLEAN})

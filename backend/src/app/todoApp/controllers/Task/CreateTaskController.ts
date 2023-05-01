@@ -22,8 +22,7 @@ class CreateTaskController {
         if(
             typeof name !== "string" ||
             typeof description !== "string" ||
-            typeof userId !== "string" ||
-            typeof date !== "string" 
+            typeof userId !== "string" 
           ){
             res.send('CreateTaskController Response: Error Task data fields incorrect')
             throw new Error("CreateTaskController Response: Error Task data fields incorrect")

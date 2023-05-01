@@ -3,7 +3,7 @@ interface TaskEntity{
     name: string;
     description: string;
     userId: string;
-    date: string;
+    date: object;
     complete: boolean;
 }
 

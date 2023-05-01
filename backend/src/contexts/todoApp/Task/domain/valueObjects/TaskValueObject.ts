@@ -5,10 +5,10 @@ class TaskValueObject implements TaskEntity{
     readonly name: string;
     readonly description: string;
     readonly userId: string;
-    readonly date: string;
+    readonly date: object;
     readonly complete: boolean;
 
-    constructor(id: string , name: string ,description: string,userId: string, date: string, complete: boolean){
+    constructor(id: string , name: string ,description: string,userId: string, date: object, complete: boolean){
         this.id = id ;
         this.name = name ; 
         this.description = description ;
