@@ -10,6 +10,10 @@ class GetTaskbyUserIdController {
 
     async run(req: Request, res: Response): Promise<void> {
         const { id } = req.query ; 
+        //IMPLEMENTAR QUE EL ID LO TOME DE LA SESION INICIADA. COMO EN NO COUNTRY
+        //IMPLEMENTAR QUE EL ID LO TOME DE LA SESION INICIADA. COMO EN NO COUNTRY
+        //IMPLEMENTAR QUE EL ID LO TOME DE LA SESION INICIADA. COMO EN NO COUNTRY
+
         if(!id){
             res.send('GetTaskbyUserIdController Response: Error query null')
             throw new Error("GetTaskbyUserIdController Response: Error query null")

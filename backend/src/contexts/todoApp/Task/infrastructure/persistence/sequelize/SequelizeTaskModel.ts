@@ -23,6 +23,14 @@ class SequelizeTaskModel extends Model<TaskEntity> implements TaskEntity{
     @Column({type: DataType.STRING})
     userId!: string;
 
+    @AllowNull(false)
+    @Column({type: DataType.STRING})
+    date!: string;
+
+    @AllowNull(false)
+    @Column({type: DataType.BOOLEAN})
+    complete!: boolean;
+
     @BelongsTo(()=> SequelizeUserModel)
     user!: SequelizeUserModel ;
 

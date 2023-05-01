@@ -12,6 +12,10 @@ class EliminateTaskController {
 
     async run(req: Request, res: Response): Promise<void> {
         const { id } = req.query ; 
+        //IMPLEMENTAR QUE EL ID LO TOME DE LA SESION INICIADA. COMO EN NO COUNTRY
+        //IMPLEMENTAR QUE EL ID LO TOME DE LA SESION INICIADA. COMO EN NO COUNTRY
+        //IMPLEMENTAR QUE EL ID LO TOME DE LA SESION INICIADA. COMO EN NO COUNTRY
+
         if(!id){
             res.send('EliminateTaskController Response: Error query null')
             throw new Error("EliminateTaskController Response: Error query null")

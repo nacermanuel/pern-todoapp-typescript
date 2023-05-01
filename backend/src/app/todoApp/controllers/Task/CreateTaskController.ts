@@ -14,12 +14,16 @@ class CreateTaskController {
     }
 
     async run(req: Request, res: Response): Promise<void> {
-        const { name, description, userId } = req.body ;
+        const { name, description, userId, date } = req.body ;
+        //IMPLEMENTAR QUE EL ID LO TOME DE LA SESION INICIADA. COMO EN NO COUNTRY
+        //IMPLEMENTAR QUE EL ID LO TOME DE LA SESION INICIADA. COMO EN NO COUNTRY
+        //IMPLEMENTAR QUE EL ID LO TOME DE LA SESION INICIADA. COMO EN NO COUNTRY
 
         if(
             typeof name !== "string" ||
             typeof description !== "string" ||
-            typeof userId !== "string" 
+            typeof userId !== "string" ||
+            typeof date !== "string" 
           ){
             res.send('CreateTaskController Response: Error Task data fields incorrect')
             throw new Error("CreateTaskController Response: Error Task data fields incorrect")
@@ -27,7 +31,7 @@ class CreateTaskController {
         
         const id = uuidv4()
 
-        const task = new TaskValueObject(id,name,description,userId) ;
+        const task = new TaskValueObject(id,name,description,userId,date,false) ;
 
         const data = await this._createTaskusecase.run(task) ;
 
