@@ -30,7 +30,7 @@ const style = {
 export default function ModalCreateTask({open , onClose, title}) {
     const [ descripcion, setDescripcion] = React.useState('')
     const [ titulo, setTitulo] = React.useState(title)
-    const [ fecha, setFecha ] = React.useState({year:0,month:0,day:0, date:{}})
+    const [ fecha, setFecha ] = React.useState({year:0,month:0,day:0})
 
     const handleChangeTitulo = (e) =>{
         setTitulo(e.target.value)
@@ -42,12 +42,10 @@ export default function ModalCreateTask({open , onClose, title}) {
 
     React.useEffect(()=>{
         const today = new Date();
-        console.log(today)
-        console.log(typeof today);
         const year = today.getFullYear();
         const month = today.getMonth() + 1; // los meses se indexan desde 0 (enero) hasta 11 (diciembre)
         const day = today.getDate();
-        setFecha({year:year,month:month,day:day, date:today})
+        setFecha({year:year,month:month,day:day})
         //alert(`${year}-${month}-${day}`); // formato "AAAA-MM-DD"
     },[])
 
