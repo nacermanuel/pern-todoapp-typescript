@@ -20,6 +20,9 @@ const tareasSlice = createSlice({
         },
         deleteTarea: (state, action) => {
             state.tareas = [...state.tareas.filter(e=> e.id != action.payload)]
+        },
+        createTarea: (state, action) => {
+            state.tareas.push(action.payload)
         }
     },
     extraReducers: builder => {
@@ -41,4 +44,4 @@ const tareasSlice = createSlice({
 
 export default tareasSlice.reducer ;
 export { fetchTareas}
-export const { updateTarea, deleteTarea } = tareasSlice.actions
+export const { updateTarea, deleteTarea , createTarea} = tareasSlice.actions

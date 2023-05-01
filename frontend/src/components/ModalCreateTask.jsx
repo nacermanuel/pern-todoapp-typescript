@@ -7,6 +7,9 @@ import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SendIcon from '@mui/icons-material/Send';
 import * as React from 'react';
+import { v4 as uuidv4 } from 'uuid';
+import { useDispatch } from 'react-redux';
+import { createTarea } from '../redux/feature/tareasSlice';
 
 const style = {
   position: 'absolute',
@@ -26,19 +29,19 @@ const style = {
   gap: 2
 };
 
-//export default function ModalCreateTask({open , onClose, data}) {
+const userId = 1
+//ESTE USERID LO DEBE TOMAR DE LA SESION INICIADA
+//ESTE USERID LO DEBE TOMAR DE LA SESION INICIADA
+//ESTE USERID LO DEBE TOMAR DE LA SESION INICIADA
+
+
 export default function ModalCreateTask({open , onClose, title}) {
     const [ descripcion, setDescripcion] = React.useState('')
     const [ titulo, setTitulo] = React.useState(title)
     const [ fecha, setFecha ] = React.useState({year:0,month:0,day:0})
+    const [id ,setId] = React.useState(uuidv4())
+    const dispatch = useDispatch()
 
-    const handleChangeTitulo = (e) =>{
-        setTitulo(e.target.value)
-    }
-
-    const handleChangeDescripcion = (e) =>{
-        setDescripcion(e.target.value)
-    }
 
     React.useEffect(()=>{
         const today = new Date();
@@ -48,6 +51,19 @@ export default function ModalCreateTask({open , onClose, title}) {
         setFecha({year:year,month:month,day:day})
         //alert(`${year}-${month}-${day}`); // formato "AAAA-MM-DD"
     },[])
+
+    const handleChangeTitulo = (e) =>{
+        setTitulo(e.target.value)
+    }
+
+    const handleChangeDescripcion = (e) =>{
+        setDescripcion(e.target.value)
+    }
+
+    const handleCreate = ()=>{
+      dispatch(createTarea({id:id, name:titulo, description: descripcion, userId: userId, date:fecha, complete: false}))
+      onClose()
+    }
 
   return (
         <Modal
@@ -67,9 +83,9 @@ export default function ModalCreateTask({open , onClose, title}) {
 
               <Box sx={{display: 'flex', flexDirection: 'row', width: '55vw', justifyContent: 'center', gap: '5vw'}}>
             {/* El boton esta disable si no hay cambios */}                
-                <Button variant="outlined" color="error" startIcon={<DeleteIcon />}>Descartar</Button>
+                <Button variant="outlined" onClick={onClose} color="error" startIcon={<DeleteIcon />}>Descartar</Button>
             {/* El boton esta disable si hay alguna en HACIENDO AHORA */}    
-                <Button variant="contained" endIcon={<SendIcon />} color="secondary">Crear</Button>
+                <Button onClick={handleCreate} variant="contained" endIcon={<SendIcon />} color="secondary">Crear</Button>
               </Box>
 
           </Box>
