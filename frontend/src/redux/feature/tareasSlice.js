@@ -13,6 +13,13 @@ const fetchTareas = createAsyncThunk('tareas/fetchTareas', apiCallTareas)
 const tareasSlice = createSlice({
     name: 'tareas',
     initialState,
+    reducers: {
+        updateTarea: (state, action)=>{
+
+            const index = state.tareas.findIndex((e) => e.id == action.payload.id)
+            state.tareas[index] = action.payload
+        },
+    },
     extraReducers: builder => {
         builder.addCase(fetchTareas.pending, (state) => {
             state.loading = true
@@ -31,4 +38,5 @@ const tareasSlice = createSlice({
 })
 
 export default tareasSlice.reducer ;
-export { fetchTareas }
+export { fetchTareas}
+export const { updateTarea } = tareasSlice.actions

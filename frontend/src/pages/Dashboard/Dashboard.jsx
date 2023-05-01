@@ -6,11 +6,16 @@ import { fetchTareas } from '../../redux/feature/tareasSlice'
 
 const Dashboard = () => {
 
-  const idUsuario = 1 // ESTO DEBE SER TOMADO DE LA SESION INICIADA
+  const idUsuario = 'b3ed8513-9f10-4b56-92c4-86eec76d19e7' 
+  // ESTO DEBE SER TOMADO DE LA SESION INICIADA
+  // ESTO DEBE SER TOMADO DE LA SESION INICIADA
+  // ESTO DEBE SER TOMADO DE LA SESION INICIADA
+
   const dispatch = useDispatch();
 
   React.useEffect(()=>{
     dispatch(fetchTareas(idUsuario))
+    alert('Se hizo el dispatch de tareas desde la BBDD')
   },[])
 
   return (

@@ -7,6 +7,8 @@ import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SendIcon from '@mui/icons-material/Send';
 import * as React from 'react';
+import { useDispatch } from 'react-redux';
+import { updateTarea } from '../redux/feature/tareasSlice';
 
 const style = {
   position: 'absolute',
@@ -27,6 +29,29 @@ const style = {
 };
 
 export default function ModalViewTask({open , onClose, data}) {
+  const [title, setTitle] = React.useState(data.name);
+  const [description, setDescripcion] = React.useState(data.description);
+  const dispatch = useDispatch();
+
+  const changeTitle = (e) => {
+    if(e.target.id == 'titulo'){
+      setTitle(e.target.value)
+    }else{
+      setDescripcion(e.target.value)
+    }
+  }
+
+  React.useEffect(()=>{
+    if(open){
+      setTitle(data.name)
+      setDescripcion(data.description)
+    }
+  },[open])
+
+  const handleUpdate = () =>{
+    dispatch(updateTarea({...data, name: title,description:description}))
+  }
+
 
   return (
         <Modal
@@ -36,9 +61,9 @@ export default function ModalViewTask({open , onClose, data}) {
           aria-describedby="modal-modal-description"
         >
           <Box sx={style}>
-            <TextField id="outlined-basic" label="Título" variant="outlined" defaultValue={data.name} sx={{width:"100%"}}/>
-            <TextField id="outlined-basic" label="Descripción" variant="outlined" defaultValue={data.description} multiline rows={4} sx={{width:"100%"}}/>
-            <Chip label={`Esta tarea fue creada el ${data.name}`} color="primary" sx={{fontSize: '0.9rem', width:'100%'}}/>
+            <TextField id="titulo" label="Título" variant="outlined" value={title} onChange={changeTitle} sx={{width:"100%"}}/>
+            <TextField id="description" label="Descripción" variant="outlined" value={description} onChange={changeTitle} multiline rows={4} sx={{width:"100%"}}/>
+            <Chip label={`Esta tarea fue creada el ${data.date.year}-${data.date.month}-${data.date.day}`} color="primary" sx={{fontSize: '0.9rem', width:'100%'}}/>
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
               Aqui voy a poner una frase motivaiconal.
             </Typography>
@@ -46,7 +71,7 @@ export default function ModalViewTask({open , onClose, data}) {
 
               <Box sx={{display: 'flex', flexDirection: 'row', width: '55vw', justifyContent: 'center', gap: '5vw'}}>
             {/* El boton esta disable si no hay cambios */}                
-                <Button variant="contained">Actualizar</Button>
+                <Button variant="contained" onClick={handleUpdate}>Actualizar</Button>
                 <Button variant="outlined" color="error" startIcon={<DeleteIcon />}>Eliminar</Button>
             {/* El boton esta disable si hay alguna en HACIENDO AHORA */}    
                 <Button variant="contained" endIcon={<SendIcon />} color="secondary">Hacer Ahora</Button>
