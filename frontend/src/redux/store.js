@@ -3,6 +3,6 @@ import tareasReducer from './feature/tareasSlice.js'
 
 export const store = configureStore({
   reducer: {
-    tareas: tareasReducer,
+    todo_app: tareasReducer,
   },
 })

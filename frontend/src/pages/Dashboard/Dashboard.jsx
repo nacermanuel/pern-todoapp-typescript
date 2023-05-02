@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Navbar from '../../components/Navbar'
 import TablePendingTask from '../../components/TablePendingTask'
-import { fetchTareas } from '../../redux/feature/tareasSlice'
+import { fetchTareas , updateDataBase} from '../../redux/feature/tareasSlice'
 
 const Dashboard = () => {
 
@@ -18,6 +18,12 @@ const Dashboard = () => {
     alert('Se hizo el dispatch de tareas desde la BBDD')
   },[])
 
+
+  const prueba = () => {
+    dispatch(updateDataBase())
+    alert('se despacho el update')
+  }
+
   return (
     <div>
         <Navbar/>
@@ -27,6 +33,8 @@ const Dashboard = () => {
           </div>
           <div className=' w-full h-full'></div>
         </div>
+
+        <button onClick={prueba}>probar</button>
     </div>
   )
 }

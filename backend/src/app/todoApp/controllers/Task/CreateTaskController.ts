@@ -24,6 +24,9 @@ class CreateTaskController {
             typeof description !== "string" ||
             typeof userId !== "string" 
           ){
+            console.log(req.body);
+            console.log(`name: ${typeof name}`)
+            console.log(`name: ${typeof description}`)
             res.send('CreateTaskController Response: Error Task data fields incorrect')
             throw new Error("CreateTaskController Response: Error Task data fields incorrect")
         }
