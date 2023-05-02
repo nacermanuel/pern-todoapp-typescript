@@ -1,8 +1,8 @@
 import { Router, Request, Response } from "express";
 import { CreateTaskController } from "../controllers/Task/CreateTaskController";
-import { GetTaskbyUserIdUseCase } from "../../../contexts/todoApp/Task/application/GetTaskbyUserIdUseCase";
 import { GetTaskbyUserIdController } from "../controllers/Task/GetTaskbyUserIdController";
 import { EliminateTaskController } from "../controllers/Task/EliminateTaskController";
+import { UpdateTaskController } from "../controllers/Task/UpdateTaskController";
 
 
 const taskRouter = Router()
@@ -39,6 +39,18 @@ taskRouter.delete(
             await eliminatetask.run(req, res);
         }catch(error){
             console.log(`Error TaskRoutes.ts DELETE/task ${error}`)
+        }
+    }
+)
+
+taskRouter.post(
+    '/taskupdate',
+    async ( req: Request, res: Response) =>{
+        try{
+            const updatetask = new UpdateTaskController();
+            await updatetask.run(req,res);
+        }catch(error){
+           console.log(`Error TaskRoutes.ts POST/taskupdate ${error}`) 
         }
     }
 )

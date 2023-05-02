@@ -22,6 +22,22 @@ class SequelizeTaskImpl implements TaskRepository{
     async eliminatetask(taskid: string): Promise<void> {
         const task = await SequelizeTaskModel.destroy({where:{id:taskid}})
     }
+
+    async updateTask(task: TaskEntity): Promise<boolean|null> {
+        const affectedCount = await SequelizeTaskModel.update(task,{where: { id: task.id }})
+
+        if(affectedCount[0] === 1){
+            return true
+        }else{
+            console.log(`en implementation updatedTask es:`)
+            console.log(affectedCount);
+            return null
+        }
+        
+         
+
+    }
+
 }
 
 export { SequelizeTaskImpl } ;
