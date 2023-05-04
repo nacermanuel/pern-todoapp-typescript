@@ -1,5 +1,5 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import Navbar from '../../components/Navbar'
 import TablePendingTask from '../../components/TablePendingTask'
 import { fetchTareas , updateDataBase} from '../../redux/feature/tareasSlice'
@@ -15,14 +15,9 @@ const Dashboard = () => {
 
   React.useEffect(()=>{
     dispatch(fetchTareas(idUsuario))
-    alert('Se hizo el dispatch de tareas desde la BBDD')
+    console.log('Se hizo el dispatch de tareas desde la BBDD');
   },[])
 
-
-  const prueba = () => {
-    dispatch(updateDataBase())
-    alert('se despacho el update')
-  }
 
   return (
     <div>
@@ -33,8 +28,6 @@ const Dashboard = () => {
           </div>
           <div className=' w-full h-full'></div>
         </div>
-
-        <button onClick={prueba}>probar QUITAR ESTO DESPUES DE DEFINIR DONDE IRA LA ACCION</button>
     </div>
   )
 }
