@@ -32,13 +32,16 @@ export default function ModalViewTask({open , onClose, data}) {
   const [title, setTitle] = React.useState(data.name);
   const [description, setDescripcion] = React.useState(data.description);
   const [confirmation,setConfirmation] = React.useState(true)
+  const [changes, setChanges] = React.useState(false)
   const dispatch = useDispatch();
 
   const changeTitle = (e) => {
     if(e.target.id == 'titulo'){
       setTitle(e.target.value)
+      setChanges(true)
     }else{
       setDescripcion(e.target.value)
+      setChanges(true)
     }
   }
 
@@ -51,6 +54,7 @@ export default function ModalViewTask({open , onClose, data}) {
 
   const handleUpdate = () =>{
     dispatch(updateTarea({...data, name: title,description:description}))
+    setChanges(false)
   }
 
   const buttonDelete = (e)=>{
@@ -58,10 +62,20 @@ export default function ModalViewTask({open , onClose, data}) {
     dispatch(deleteTarea(e.target.id))
   }
 
+  const aCerrar = ()=>{
+    if(changes){
+      const result = window.confirm("Hey!! Hay cambios sin guardar, si cierras perderás los cambios.")
+      if(result) onClose()
+    }else{
+      onClose()
+    }
+
+  }
+
   return (
         <Modal
           open={open}
-          onClose={onClose}
+          onClose={aCerrar}
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
         >
@@ -76,7 +90,12 @@ export default function ModalViewTask({open , onClose, data}) {
 
               <Box sx={{display: 'flex', flexDirection: 'row', width: '55vw', justifyContent: 'center', gap: '5vw'}}>
             {/* El boton esta disable si no hay cambios */}                
-                <Button variant="contained" onClick={handleUpdate}>Actualizar</Button>
+                { changes ?
+                  <Button variant="contained" onClick={handleUpdate}>Actualizar</Button>
+                  :
+                  <Button variant="contained" disabled>Actualizar</Button>
+                }
+
                 { confirmation ? 
                   <Button id={data.id} onClick={() => setConfirmation(!confirmation)} variant="outlined" color="error" startIcon={<DeleteIcon />}>Eliminar</Button> 
                   :
