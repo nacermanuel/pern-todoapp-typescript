@@ -1,6 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { apiCallTareas } from "../../service/apiCallTareas";
-import { apiUpdateTareas } from "../../service/apiUpdateTareas";
+import { apiCreateTareas } from "../../service/apiCreateTareas";
+import { apiUpdateTarea } from "../../service/apiUpdateTarea";
+import { apiDeleteTareas } from "../../service/apiDeleteTareas";
 
 const initialState = {
     loading: false,
@@ -17,17 +19,30 @@ const updateDataBase = createAsyncThunk(
     'todo_app/updateTareas',
     async (_,thunkAPI) => {
         
+        const { createdTask, modifiedTask, deletedTask } = thunkAPI.getState().todo_app ;
+
         //CREACION DE TAREAS NUEVAS
-        const { createdTask } = thunkAPI.getState().todo_app ;
-        console.log(createdTask)
         if(createdTask.length > 0 ){
             createdTask.map(async (e) => {
-                const resp = await apiUpdateTareas(e) 
-                console.log(resp)
+                const resp = await apiCreateTareas(e) 
             })
             thunkAPI.dispatch(tareasSlice.actions.resetCreated())
-        }else{
-            console.log('noting to update');
+        }
+
+        //ACTUALIZAR TAREAS EXISTENTES
+        if(modifiedTask.length>0){
+            modifiedTask.map(async (e) => {
+                const resp = await apiUpdateTarea(e) 
+            })
+            thunkAPI.dispatch(tareasSlice.actions.resetModified())
+        }
+
+        //BORRAR TAREAS DE BBDD
+        if(deletedTask.length>0){
+            deletedTask.map(async (e) => {
+                const resp = await apiDeleteTareas(e) 
+            })
+            thunkAPI.dispatch(tareasSlice.actions.resetDeleted())
         }
         
     })
@@ -47,7 +62,7 @@ const updateDataBase = createAsyncThunk(
 //         const { createdTask } = thunkAPI.getState().todo_app ;
 //         console.log(createdTask)
 //         const taskPrueba = { name: "Prueba 2  front", description: "Prueba 2 front", userId:"b3ed8513-9f10-4b56-92c4-86eec76d19e7", date: {"year":2023,"month":5,"day":1}, complete: false }
-//         const resp = await apiUpdateTareas(taskPrueba)
+//         const resp = await apiCreateTareas(taskPrueba)
 //         console.log(resp)
 
 //     })
@@ -60,7 +75,7 @@ const tareasSlice = createSlice({
         updateTarea: (state, action)=>{
             const index = state.tareas.findIndex((e) => e.id == action.payload.id)
             state.tareas[index] = action.payload
-            state.modifiedTask.push(action.payload.id)
+            state.modifiedTask.push(action.payload)
         },
         deleteTarea: (state, action) => {
             state.tareas = [...state.tareas.filter(e=> e.id != action.payload)]
@@ -74,7 +89,13 @@ const tareasSlice = createSlice({
         },
         resetCreated:(state)=>{
             state.createdTask = []
-        }
+        },
+        resetModified:(state)=>{
+            state.modifiedTask = []
+        },
+        resetDeleted:(state)=>{
+            state.deletedTask = []
+        },
     },
     extraReducers: builder => {
         builder.addCase(fetchTareas.pending, (state) => {

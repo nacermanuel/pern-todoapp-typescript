@@ -34,7 +34,7 @@ const Dashboard = () => {
           <div className=' w-full h-full'></div>
         </div>
 
-        <button onClick={prueba}>probar</button>
+        <button onClick={prueba}>probar QUITAR ESTO DESPUES DE DEFINIR DONDE IRA LA ACCION</button>
     </div>
   )
 }
