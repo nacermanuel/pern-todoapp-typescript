@@ -75,6 +75,14 @@ const tareasSlice = createSlice({
         resetDeleted:(state)=>{
             state.deletedTask = []
         },
+        orderChangeUp:(state, action)=>{
+            console.log(state.tareas)
+
+            if(action.payload > 0){
+                [ state.tareas[action.payload] , state.tareas[action.payload-1] ] = [ state.tareas[action.payload-1] , state.tareas[action.payload] ]
+                console.log(state.tareas)
+            }
+        }
     },
     extraReducers: builder => {
         builder.addCase(fetchTareas.pending, (state) => {
@@ -105,4 +113,4 @@ const tareasSlice = createSlice({
 
 export default tareasSlice.reducer ;
 export { fetchTareas, updateDataBase }
-export const { updateTarea, deleteTarea , createTarea, } = tareasSlice.actions
+export const { updateTarea, deleteTarea , createTarea, orderChangeUp} = tareasSlice.actions
