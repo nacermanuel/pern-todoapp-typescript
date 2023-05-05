@@ -13,9 +13,12 @@ class SequelizeListTaskImplementation implements ListTaskRepository{
             //console.log(`ListTaskImplementation Error: ${e}`);
             //return null
         }
-
         return newListTask
     }
-}
+    async findByUserId(id: string): Promise<ListTaskModel | null> {
+        const findList = await SequelizeListTaskModel.findOne({ where: { userId: id } })
 
+        return findList
+    }
+}
 export {SequelizeListTaskImplementation}
