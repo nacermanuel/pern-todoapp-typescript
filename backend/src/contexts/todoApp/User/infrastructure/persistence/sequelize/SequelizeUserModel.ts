@@ -1,5 +1,6 @@
 import { Model, Column, Table, PrimaryKey, DataType, AllowNull, HasMany } from 'sequelize-typescript'
 import { UserEntity } from '../../../domain/entities/UserEntity'
+import { SequelizeListTaskModel } from '../../../../ListTask/infrastructure/persistence/sequelize/SequelizeListTaskModel';
 import { SequelizeTaskModel } from '../../../../Task/infrastructure/persistence/sequelize/SequelizeTaskModel';
 
 @Table({modelName: 'User'})
@@ -25,8 +26,12 @@ class SequelizeUserModel extends Model<UserEntity> implements UserEntity{
     @Column({type: DataType.STRING})
     password!: string;
     
-    @HasMany(() => SequelizeTaskModel)
-    tasks!: SequelizeTaskModel[]
+    @HasMany(() => SequelizeTaskModel, 'userId')
+    tasks!: SequelizeTaskModel[] ;
+
+    @HasMany(()=> SequelizeListTaskModel, 'userId')
+    listtask!: SequelizeListTaskModel[] ;
+
 }
 
 export { SequelizeUserModel };
