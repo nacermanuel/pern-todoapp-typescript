@@ -69,7 +69,6 @@ export default function ModalViewTask({open , onClose, data}) {
     }else{
       onClose()
     }
-
   }
 
   return (

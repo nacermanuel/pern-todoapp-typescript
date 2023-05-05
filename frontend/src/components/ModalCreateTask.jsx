@@ -65,10 +65,15 @@ export default function ModalCreateTask({open , onClose, title}) {
       onClose()
     }
 
+    const aCerrar = ()=>{
+      const result = window.confirm("Hey!! Hay cambios sin guardar, si cierras perderás los cambios.")
+      if(result) onClose()
+    }
+
   return (
         <Modal
           open={open}
-          onClose={onClose}
+          onClose={aCerrar}
           aria-labelledby="modal-modal-title"
           aria-describedby="modal-modal-description"
         >
@@ -83,7 +88,7 @@ export default function ModalCreateTask({open , onClose, title}) {
 
               <Box sx={{display: 'flex', flexDirection: 'row', width: '55vw', justifyContent: 'center', gap: '5vw'}}>
             {/* El boton esta disable si no hay cambios */}                
-                <Button variant="outlined" onClick={onClose} color="error" startIcon={<DeleteIcon />}>Descartar</Button>
+                <Button variant="outlined" onClick={aCerrar} color="error" startIcon={<DeleteIcon />}>Descartar</Button>
             {/* El boton esta disable si hay alguna en HACIENDO AHORA */}    
                 <Button onClick={handleCreate} variant="contained" endIcon={<SendIcon />} color="secondary">Crear</Button>
               </Box>
