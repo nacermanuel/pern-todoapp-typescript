@@ -21,8 +21,8 @@ class SequelizeListTaskImplementation implements ListTaskRepository{
         return findList
     }
 
-    async updateListTask(listTask: ListTaskModel): Promise<boolean | null> {
-        const affectedCount = await SequelizeListTaskModel.update(listTask,{where:{userId:listTask.userId}})
+    async updateListTask(id:string, tasks:object[]): Promise<boolean | null> {
+        const affectedCount = await SequelizeListTaskModel.update({ tasks: tasks },{where:{userId:id}})
         
         if(affectedCount[0] === 1){
             return true

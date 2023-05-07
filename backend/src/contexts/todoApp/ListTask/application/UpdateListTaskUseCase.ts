@@ -8,8 +8,8 @@ class UpdateListTaskUseCase {
         this._listtaskrepository = listTask
     }
 
-    async run(listTask: ListTaskModel): Promise<boolean|null>{
-        const updatedListTask = await this._listtaskrepository.updateListTask(listTask);
+    async run(id:string, tasks:object[]): Promise<boolean|null>{
+        const updatedListTask = await this._listtaskrepository.updateListTask(id, tasks);
 
         if(updatedListTask){
             return true

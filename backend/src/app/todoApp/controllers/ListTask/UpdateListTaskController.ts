@@ -14,11 +14,12 @@ class UpdateListTaskController{
     }
 
     async run(req: Request, res: Response): Promise<void>{
-        const listTaskSent = req.body
+        const { listTask } = req.body
 
-        const updatedListTask = new ListTaskValueObject(listTaskSent.id, listTaskSent.tasks, listTaskSent.userId);
+        const id = 'b3ed8513-9f10-4b56-92c4-86eec76d19e7'
+        // ESTE IDE DEBE VENIR DEL FRONT TOMADO DEL LOCALSTORAGE (COMO SE HIZO EN NOCOUNTRY)  
 
-        const data = await this._updatelisttaskusecase.run(updatedListTask);
+        const data = await this._updatelisttaskusecase.run(id, listTask);
 
         if(data){
             res.status(200).json(data) ;
