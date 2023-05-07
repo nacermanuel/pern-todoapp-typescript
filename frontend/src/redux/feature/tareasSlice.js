@@ -55,13 +55,8 @@ const tareasSlice = createSlice({
         resetDeleted:(state)=>{
             
         },
-        orderChangeUp:(state, action)=>{
-            console.log(state.tareas)
-
-            if(action.payload > 0){
-                [ state.tareas[action.payload] , state.tareas[action.payload-1] ] = [ state.tareas[action.payload-1] , state.tareas[action.payload] ]
-                console.log(state.tareas)
-            }
+        orderChange:(state,action)=>{
+            state.tareas = [...action.payload]
         }
     },
     extraReducers: builder => {
@@ -93,4 +88,4 @@ const tareasSlice = createSlice({
 
 export default tareasSlice.reducer ;
 export { fetchTareas, updateDataBase }
-export const { updateTarea, deleteTarea , createTarea, orderChangeUp} = tareasSlice.actions
+export const { updateTarea, deleteTarea , createTarea, orderChange } = tareasSlice.actions
