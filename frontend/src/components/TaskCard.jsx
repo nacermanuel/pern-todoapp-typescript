@@ -2,7 +2,7 @@ import Button from '@mui/material/Button';
 import * as React from 'react';
 import ModalViewTask from './ModalViewTask';
 import { useDispatch , useSelector} from 'react-redux';
-import { orderChange } from '../redux/feature/tareasSlice';
+import { orderChange, updateDataBase } from '../redux/feature/tareasSlice';
 
 
 export default function TaskCard({data, index, length}) {
@@ -21,6 +21,7 @@ export default function TaskCard({data, index, length}) {
     newArray[id] = element1
     newArray[id-1] = element2
     dispatch(orderChange(newArray))
+    dispatch(updateDataBase())
   }
 
   const changeDown = (e)=>{
@@ -31,13 +32,18 @@ export default function TaskCard({data, index, length}) {
     newArray[id] = element1
     newArray[id+1] = element2
     dispatch(orderChange(newArray))
+    dispatch(updateDataBase())
   }
 
   return (
-    <div className='bg-white h-[10vh] w-[97%] flex items-center justify-around rounded-md'>
-        <p>{data.name}</p>
-        <Button onClick={handleOpen} variant="contained">Ver</Button>
-        <div className='flex flex-col'>
+    <div className='bg-white min-h-[10vh] h-auto w-[97%] flex items-center justify-around rounded-md'>
+        <div className='w-[70%]'>
+          <p className='ml-2 my-2 text-sm text-center'>{data.name}</p>
+        </div>
+        <div className='flex justify-center items-center w-[25%]'>
+          <Button onClick={handleOpen} variant="contained">Ver</Button>
+        </div>
+        <div className='flex flex-col mx-1 w-[5%]'>
           { index !== 0 && <button id={index}  onClick={changeUp}>&#8679;</button> }
           { length !== (index+1) && <button id={index}  onClick={changeDown}>&#8681;</button>  }
         </div>       
