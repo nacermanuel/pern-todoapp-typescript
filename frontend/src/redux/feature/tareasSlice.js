@@ -3,6 +3,7 @@ import { apiCallTareas } from "../../service/apiCallTareas";
 import { apiCreateTareas } from "../../service/apiCreateTareas";
 import { apiUpdateTarea } from "../../service/apiUpdateTarea";
 import { apiDeleteTareas } from "../../service/apiDeleteTareas";
+import { apiUpdateListTask } from "../../service/apiUpdateListTask";
 
 const initialState = {
     loading: false,
@@ -19,31 +20,10 @@ const updateDataBase = createAsyncThunk(
     'todo_app/updateTareas',
     async (_,thunkAPI) => {
         
-        const { createdTask, modifiedTask, deletedTask } = thunkAPI.getState().todo_app ;
+        const { tareas } = thunkAPI.getState().todo_app ;
 
-        //CREACION DE TAREAS NUEVAS
-        if(createdTask.length > 0 ){
-            createdTask.map(async (e) => {
-                const resp = await apiCreateTareas(e) 
-            })
-            thunkAPI.dispatch(tareasSlice.actions.resetCreated())
-        }
-
-        //ACTUALIZAR TAREAS EXISTENTES
-        if(modifiedTask.length>0){
-            modifiedTask.map(async (e) => {
-                const resp = await apiUpdateTarea(e) 
-            })
-            thunkAPI.dispatch(tareasSlice.actions.resetModified())
-        }
-
-        //BORRAR TAREAS DE BBDD
-        if(deletedTask.length>0){
-            deletedTask.map(async (e) => {
-                const resp = await apiDeleteTareas(e) 
-            })
-            thunkAPI.dispatch(tareasSlice.actions.resetDeleted())
-        }
+        const resp = await apiUpdateListTask(tareas)
+        thunkAPI.dispatch(tareasSlice.actions.resetModified())
         
     })
 
@@ -66,14 +46,14 @@ const tareasSlice = createSlice({
             state.tareas.push(action.payload)
             state.createdTask.push(action.payload)
         },
-        resetCreated:(state)=>{
-            state.createdTask = []
-        },
         resetModified:(state)=>{
+            console.log('entro al reset modified');
+            state.createdTask = []
             state.modifiedTask = []
+            state.deletedTask = []
         },
         resetDeleted:(state)=>{
-            state.deletedTask = []
+            
         },
         orderChangeUp:(state, action)=>{
             console.log(state.tareas)

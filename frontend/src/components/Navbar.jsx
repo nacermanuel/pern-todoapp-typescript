@@ -6,14 +6,13 @@ import { updateDataBase } from '../redux/feature/tareasSlice';
 
 export default function Navbar() {
   const dispatch = useDispatch();
-  const { createdTask, modifiedTask, deletedTask, saving } = useSelector((state) => state.todo_app)
+  const { createdTask, modifiedTask, deletedTask } = useSelector((state) => state.todo_app)
   const [changes,setChanges] = React.useState(false)
 
   React.useEffect(() => {
     if(createdTask.length > 0 || modifiedTask.length > 0 || deletedTask.length > 0){
       setChanges(true)
       dispatch(updateDataBase())
-      console.log('Se debio actulizar despachando, por cambios en redux');
     }else{
       setChanges(false)
     }
