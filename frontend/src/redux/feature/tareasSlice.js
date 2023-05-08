@@ -11,7 +11,8 @@ const initialState = {
     error: '',
     createdTask:[],
     modifiedTask:[],
-    deletedTask:[]
+    deletedTask:[],
+    nowTask: false
 } ;
 
 const fetchTareas = createAsyncThunk('tareas/fetchTareas', apiCallTareas)
@@ -57,6 +58,12 @@ const tareasSlice = createSlice({
         },
         orderChange:(state,action)=>{
             state.tareas = [...action.payload]
+        },
+        setNowTask:(state, action)=>{
+            const index = state.tareas.findIndex((e) => e.id == action.payload.id)
+            state.tareas[index] = action.payload
+            state.modifiedTask.push(action.payload)
+            state.nowTask = !state.nowTask
         }
     },
     extraReducers: builder => {
@@ -67,6 +74,11 @@ const tareasSlice = createSlice({
             state.loading = false
             state.tareas = action.payload
             state.error = ''
+            let now = action.payload.filter(e=> e.now === true)
+            if(now.length){
+                state.nowTask = true
+            }
+
         })
         builder.addCase(fetchTareas.rejected, (state, action) => {
             state.loading = false
@@ -88,4 +100,4 @@ const tareasSlice = createSlice({
 
 export default tareasSlice.reducer ;
 export { fetchTareas, updateDataBase }
-export const { updateTarea, deleteTarea , createTarea, orderChange } = tareasSlice.actions
+export const { updateTarea, deleteTarea , createTarea, orderChange, setNowTask } = tareasSlice.actions

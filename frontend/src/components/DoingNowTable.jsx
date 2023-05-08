@@ -39,8 +39,6 @@ export const DoingNowTable = () => {
             setTitle(tareaNow.name)
             setDescripcion(tareaNow.description)
         }
-        console.log(` inside tareaNow`);        
-        console.log(tareaNow);
     }, [tareaNow])
 
     const changeInput = (e) => {
@@ -83,7 +81,7 @@ export const DoingNowTable = () => {
                     }
                 </div>
                 <div>
-                    <Button variant="contained" color="secondary">Marcar como completada!</Button>
+                    <Button variant="contained" color="secondary">Marcar como completa!</Button>
                 </div>
                 </div>
                 :

@@ -7,8 +7,8 @@ import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SendIcon from '@mui/icons-material/Send';
 import * as React from 'react';
-import { useDispatch } from 'react-redux';
-import { updateTarea, deleteTarea } from '../redux/feature/tareasSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateTarea, deleteTarea, setNowTask } from '../redux/feature/tareasSlice';
 
 const style = {
   position: 'absolute',
@@ -34,6 +34,7 @@ export default function ModalViewTask({open , onClose, data}) {
   const [confirmation,setConfirmation] = React.useState(true)
   const [changes, setChanges] = React.useState(false)
   const dispatch = useDispatch();
+  const nowAvailable = useSelector((state) => state.todo_app.nowTask)
 
   const changeTitle = (e) => {
     if(e.target.id == 'titulo'){
@@ -60,6 +61,10 @@ export default function ModalViewTask({open , onClose, data}) {
   const buttonDelete = (e)=>{
     onClose()
     dispatch(deleteTarea(e.target.id))
+  }
+
+  const buttonNow = (e) => {
+    dispatch(setNowTask({...data, now: true}))
   }
 
   const aCerrar = ()=>{
@@ -100,9 +105,7 @@ export default function ModalViewTask({open , onClose, data}) {
                   :
                   <Button id={data.id} onClick={buttonDelete} variant="contained" color="error">Seguro desea eliminar?</Button>
                 }
-           
-            {/* El boton esta disable si hay alguna en HACIENDO AHORA */}    
-                <Button variant="contained" endIcon={<SendIcon />} color="secondary">Hacer Ahora</Button>
+                { !nowAvailable && <Button variant="contained" onClick={buttonNow} endIcon={<SendIcon />} color="secondary">Hacer Ahora</Button>}
               </Box>
 
           </Box>
