@@ -61,7 +61,7 @@ export default function ModalCreateTask({open , onClose, title}) {
     }
 
     const handleCreate = ()=>{
-      dispatch(createTarea({id:id, name:titulo, description: descripcion, userId: userId, date:fecha, complete: false}))
+      dispatch(createTarea({id:id, name:titulo, description: descripcion, userId: userId, date:fecha, complete: false, now:false}))
       onClose()
     }
 
