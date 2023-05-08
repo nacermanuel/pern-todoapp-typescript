@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux'
 import Navbar from '../../components/Navbar'
 import TablePendingTask from '../../components/TablePendingTask'
 import { fetchTareas , updateDataBase} from '../../redux/feature/tareasSlice'
+import { DoingNowTable } from '../../components/DoingNowTable'
 
 const Dashboard = () => {
 
@@ -26,7 +27,9 @@ const Dashboard = () => {
           <div className=' w-full h-full flex justify-center items-center '>
             <TablePendingTask/>
           </div>
-          <div className=' w-full h-full'></div>
+          <div className=' w-full h-full flex justify-center items-center'>
+            <DoingNowTable/>
+          </div>
         </div>
     </div>
   )

@@ -9,7 +9,7 @@ export default function TablePendingTask() {
   const reduxState = useSelector((state) => state.todo_app)
 
   return (
-    <div className='bg-slate-300 h-[77vh] w-[55vh] p-3 rounded-md shadow-[0_0_10px_4px_rgba(0,0,0)]'>
+    <div className='bg-slate-300 h-[77vh] w-[27vw] p-3 rounded-md shadow-[0_0_10px_4px_rgba(0,0,0)]'>
       <div className=' h-[63vh] overflow-y-auto'>
         { reduxState.loading && <div>Loading</div> }
         { !reduxState.loading && reduxState.error ? <div>Error: {reduxState.error}</div> : null}
