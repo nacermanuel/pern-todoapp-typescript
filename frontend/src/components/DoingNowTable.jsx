@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 import Chip from '@mui/material/Chip';
 import Button from '@mui/material/Button';
 import { useSelector , useDispatch} from 'react-redux';
-import { updateTarea, setNowTask } from '../redux/feature/tareasSlice';
+import { backtoPending, updateDataBase, updateTaskNow, setCompleated} from '../redux/feature/tareasSlice';
 
 const style = {
   position: 'absolute',
@@ -52,18 +52,21 @@ export const DoingNowTable = () => {
     }
 
     const handleUpdate = () =>{
-        dispatch(updateTarea({...tareaNow, name: title,description:description}))
+        dispatch(updateTaskNow({...tareaNow, name: title,description:description}))
         setChanges(false)
+        dispatch(updateDataBase())
     }
 
     const backToPending = () =>{
-        dispatch(setNowTask({...tareaNow, now:false}))
+        dispatch(backtoPending({...tareaNow, now:false}))
         setChanges(false)
+        dispatch(updateDataBase())
     }
 
     const markCompleted = () =>{
-        dispatch(setNowTask({...tareaNow, now:false, complete: true}))
+        dispatch(setCompleated({...tareaNow, now:false, complete: true}))
         setChanges(false)
+        dispatch(updateDataBase())
     }
 
   return (

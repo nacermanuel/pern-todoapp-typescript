@@ -8,7 +8,8 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import SendIcon from '@mui/icons-material/Send';
 import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateTarea, deleteTarea, setNowTask } from '../redux/feature/tareasSlice';
+import { updateTarea, deleteTarea, setNowTask , updateDataBase } from '../redux/feature/tareasSlice';
+
 
 const style = {
   position: 'absolute',
@@ -56,15 +57,18 @@ export default function ModalViewTask({open , onClose, data}) {
   const handleUpdate = () =>{
     dispatch(updateTarea({...data, name: title,description:description}))
     setChanges(false)
+    dispatch(updateDataBase())
   }
 
   const buttonDelete = (e)=>{
     onClose()
     dispatch(deleteTarea(e.target.id))
+    dispatch(updateDataBase())
   }
 
   const buttonNow = (e) => {
     dispatch(setNowTask({...data, now: true}))
+    dispatch(updateDataBase())
   }
 
   const aCerrar = ()=>{

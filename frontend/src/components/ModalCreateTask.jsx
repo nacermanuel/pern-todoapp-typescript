@@ -9,7 +9,7 @@ import SendIcon from '@mui/icons-material/Send';
 import * as React from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { useDispatch } from 'react-redux';
-import { createTarea } from '../redux/feature/tareasSlice';
+import { createTarea, updateDataBase } from '../redux/feature/tareasSlice';
 
 const style = {
   position: 'absolute',
@@ -49,7 +49,6 @@ export default function ModalCreateTask({open , onClose, title}) {
         const month = today.getMonth() + 1; // los meses se indexan desde 0 (enero) hasta 11 (diciembre)
         const day = today.getDate();
         setFecha({year:year,month:month,day:day})
-        //alert(`${year}-${month}-${day}`); // formato "AAAA-MM-DD"
     },[])
 
     const handleChangeTitulo = (e) =>{
@@ -63,6 +62,7 @@ export default function ModalCreateTask({open , onClose, title}) {
     const handleCreate = ()=>{
       dispatch(createTarea({id:id, name:titulo, description: descripcion, userId: userId, date:fecha, complete: false, now:false}))
       onClose()
+      dispatch(updateDataBase())
     }
 
     const aCerrar = ()=>{

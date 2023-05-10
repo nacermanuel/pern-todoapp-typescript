@@ -1,17 +1,11 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { apiCallTareas } from "../../service/apiCallTareas";
-import { apiCreateTareas } from "../../service/apiCreateTareas";
-import { apiUpdateTarea } from "../../service/apiUpdateTarea";
-import { apiDeleteTareas } from "../../service/apiDeleteTareas";
 import { apiUpdateListTask } from "../../service/apiUpdateListTask";
 
 const initialState = {
     loading: false,
     tareas: [],
     error: '',
-    createdTask:[],
-    modifiedTask:[],
-    deletedTask:[],
     nowTask: [],
     completedTasks: [],
     todo:[]
@@ -25,12 +19,9 @@ const updateDataBase = createAsyncThunk(
     async (_,thunkAPI) => {
         
         const {  nowTask , completedTasks, todo } = thunkAPI.getState().todo_app ;
-        const tareas = [ ...nowTask, ...completedTasks, ...todo]
+        const tareas = [...todo, ...nowTask, ...completedTasks]
         thunkAPI.dispatch(tareasSlice.actions.setTareas(tareas))
         const resp = await apiUpdateListTask(tareas)
-
-        //ES ESTO REALMENTE NECESARIO AQUI ?
-        thunkAPI.dispatch(tareasSlice.actions.resetModified())
     })
 
 const tareasSlice = createSlice({
@@ -38,25 +29,17 @@ const tareasSlice = createSlice({
     initialState,
     reducers: {
         updateTarea: (state, action)=>{
-            const index = state.tareas.findIndex((e) => e.id == action.payload.id)
-            state.tareas[index] = action.payload
-            state.modifiedTask.push(action.payload)
+            const index = state.todo.findIndex((e) => e.id == action.payload.id)
+            state.todo[index] = action.payload
+        },
+        updateTaskNow:(state, action)=>{
+            state.nowTask = [action.payload]
         },
         deleteTarea: (state, action) => {
-            state.tareas = [...state.tareas.filter(e=> e.id != action.payload)]
-            state.deletedTask.push(action.payload)
-            state.modifiedTask = [...state.modifiedTask.filter(e=> e != action.payload)]
-            state.createdTask = [...state.createdTask.filter(e=> e != action.payload)]
+            state.todo = [...state.todo.filter(e=> e.id != action.payload)]
         },
         createTarea: (state, action) => {
-            state.tareas.push(action.payload)
-            state.createdTask.push(action.payload)
-        },
-        resetModified:(state)=>{
-            console.log('entro al reset modified');
-            state.createdTask = []
-            state.modifiedTask = []
-            state.deletedTask = []
+            state.todo.push(action.payload)
         },
         setTareas:(state,action)=>{
             state.tareas = action.payload
@@ -65,16 +48,16 @@ const tareasSlice = createSlice({
             state.todo = [...action.payload]
         },
         setNowTask:(state, action)=>{
-            const index = state.tareas.findIndex((e) => e.id == action.payload.id)
-            state.tareas[index] = action.payload
-            state.nowTask = [action.payload]
-            state.modifiedTask.push(action.payload)
-           
+            state.todo = [...state.todo.filter(e=> e.id != action.payload.id)]
+            state.nowTask = [action.payload]           
         },
-        reOrder:(state, action)=>{
-            state.todo = action.payload.filter(e=> e.now === false && e.complete === false)
-            state.nowTask = action.payload.filter(e=> e.now === true)
-            state.completedTasks = action.payload.filter(e=> e.complete === true)
+        setCompleated:(state,action)=>{
+            state.completedTasks.push(action.payload)
+            state.nowTask = []
+        },
+        backtoPending:(state, action)=>{
+            state.todo.unshift(action.payload)
+            state.nowTask = []
         }
 
     },
@@ -111,4 +94,4 @@ const tareasSlice = createSlice({
 
 export default tareasSlice.reducer ;
 export { fetchTareas, updateDataBase }
-export const { updateTarea, deleteTarea , createTarea, orderChange, setNowTask } = tareasSlice.actions
+export const { updateTarea, deleteTarea , createTarea, orderChange, setNowTask, backtoPending , updateTaskNow, setCompleated} = tareasSlice.actions

@@ -2,21 +2,15 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import Navbar from '../../components/Navbar'
 import TablePendingTask from '../../components/TablePendingTask'
-import { fetchTareas , updateDataBase} from '../../redux/feature/tareasSlice'
+import { fetchTareas } from '../../redux/feature/tareasSlice'
 import { DoingNowTable } from '../../components/DoingNowTable'
 
 const Dashboard = () => {
-
-  //const idUsuario = 'b3ed8513-9f10-4b56-92c4-86eec76d19e7' 
-  // ESTO DEBE SER TOMADO DE LA SESION INICIADA
-  // ESTO DEBE SER TOMADO DE LA SESION INICIADA
-  // ESTO DEBE SER TOMADO DE LA SESION INICIADA
 
   const dispatch = useDispatch();
 
   React.useEffect(()=>{
     dispatch(fetchTareas())
-    console.log('Se hizo el dispatch de tareas desde la BBDD');
   },[])
 
 
