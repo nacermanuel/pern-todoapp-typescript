@@ -12,7 +12,10 @@ const initialState = {
     createdTask:[],
     modifiedTask:[],
     deletedTask:[],
-    nowTask: false
+    nowTask: [],
+    completedTasks: [],
+    todo:[]
+
 } ;
 
 const fetchTareas = createAsyncThunk('tareas/fetchTareas', apiCallTareas)
@@ -21,11 +24,13 @@ const updateDataBase = createAsyncThunk(
     'todo_app/updateTareas',
     async (_,thunkAPI) => {
         
-        const { tareas } = thunkAPI.getState().todo_app ;
-
+        const {  nowTask , completedTasks, todo } = thunkAPI.getState().todo_app ;
+        const tareas = [ ...nowTask, ...completedTasks, ...todo]
+        thunkAPI.dispatch(tareasSlice.actions.setTareas(tareas))
         const resp = await apiUpdateListTask(tareas)
+
+        //ES ESTO REALMENTE NECESARIO AQUI ?
         thunkAPI.dispatch(tareasSlice.actions.resetModified())
-        
     })
 
 const tareasSlice = createSlice({
@@ -53,18 +58,25 @@ const tareasSlice = createSlice({
             state.modifiedTask = []
             state.deletedTask = []
         },
-        resetDeleted:(state)=>{
-            
+        setTareas:(state,action)=>{
+            state.tareas = action.payload
         },
         orderChange:(state,action)=>{
-            state.tareas = [...action.payload]
+            state.todo = [...action.payload]
         },
         setNowTask:(state, action)=>{
             const index = state.tareas.findIndex((e) => e.id == action.payload.id)
             state.tareas[index] = action.payload
+            state.nowTask = [action.payload]
             state.modifiedTask.push(action.payload)
-            state.nowTask = !state.nowTask
+           
+        },
+        reOrder:(state, action)=>{
+            state.todo = action.payload.filter(e=> e.now === false && e.complete === false)
+            state.nowTask = action.payload.filter(e=> e.now === true)
+            state.completedTasks = action.payload.filter(e=> e.complete === true)
         }
+
     },
     extraReducers: builder => {
         builder.addCase(fetchTareas.pending, (state) => {
@@ -74,10 +86,9 @@ const tareasSlice = createSlice({
             state.loading = false
             state.tareas = action.payload
             state.error = ''
-            let now = action.payload.filter(e=> e.now === true)
-            if(now.length){
-                state.nowTask = true
-            }
+            state.todo = action.payload.filter(e=> e.now === false && e.complete === false)
+            state.nowTask = action.payload.filter(e=> e.now === true)
+            state.completedTasks = action.payload.filter(e=> e.complete === true)
 
         })
         builder.addCase(fetchTareas.rejected, (state, action) => {

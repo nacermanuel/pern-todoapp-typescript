@@ -11,7 +11,7 @@ export default function TaskCard({data, index, length}) {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const current = useSelector((state) => state.todo_app.tareas)
+  const current = useSelector((state) => state.todo_app.todo)
 
   const changeUp = (e)=>{
     let id = Number(e.target.id)

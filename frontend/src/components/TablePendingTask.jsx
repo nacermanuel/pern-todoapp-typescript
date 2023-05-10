@@ -15,8 +15,8 @@ export default function TablePendingTask() {
         { !reduxState.loading && reduxState.error ? <div>Error: {reduxState.error}</div> : null}
         { !reduxState.loading && reduxState.tareas.length ?
         <Stack spacing={1} sx={{ alignItems:'center', paddingTop:'5px' }} > {/*https://mui.com/material-ui/react-stack/ */}
-          { reduxState.tareas &&
-            reduxState.tareas.filter(e=> e.now === false && e.complete === false).map((e,i,a) => {
+          { reduxState.todo &&
+            reduxState.todo.map((e,i,a) => {
               
               return <TaskCard key={e.id} data={e} index={i} length={a.length}/>
             })

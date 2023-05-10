@@ -27,7 +27,7 @@ const style = {
 
 
 export const DoingNowTable = () => {
-    const tareaNow = useSelector((state) => state.todo_app.tareas).filter(e=> e.now === true)[0]
+    const tareaNow = useSelector((state) => state.todo_app.nowTask)[0]
     const [changes, setChanges] = React.useState(false)
     const [title, setTitle] = React.useState('');
     const [description, setDescripcion] = React.useState('');

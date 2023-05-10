@@ -105,7 +105,7 @@ export default function ModalViewTask({open , onClose, data}) {
                   :
                   <Button id={data.id} onClick={buttonDelete} variant="contained" color="error">Seguro desea eliminar?</Button>
                 }
-                { !nowAvailable && <Button variant="contained" onClick={buttonNow} endIcon={<SendIcon />} color="secondary">Hacer Ahora</Button>}
+                { !nowAvailable.length && <Button variant="contained" onClick={buttonNow} endIcon={<SendIcon />} color="secondary">Hacer Ahora</Button>}
               </Box>
 
           </Box>
