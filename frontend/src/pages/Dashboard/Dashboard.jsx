@@ -4,6 +4,7 @@ import Navbar from '../../components/Navbar'
 import TablePendingTask from '../../components/TablePendingTask'
 import { fetchTareas } from '../../redux/feature/tareasSlice'
 import { DoingNowTable } from '../../components/DoingNowTable'
+import { StatisticsTable } from '../../components/StatisticsTable'
 
 const Dashboard = () => {
 
@@ -21,8 +22,9 @@ const Dashboard = () => {
           <div className=' w-full h-full flex justify-center items-center '>
             <TablePendingTask/>
           </div>
-          <div className=' w-full h-full flex justify-center items-center'>
+          <div className=' w-full h-full flex flex-col gap-2 justify-center items-center'>
             <DoingNowTable/>
+            {/* <StatisticsTable/> */}
           </div>
         </div>
     </div>

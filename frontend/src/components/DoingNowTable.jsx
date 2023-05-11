@@ -91,7 +91,7 @@ export const DoingNowTable = () => {
                 </div>
                 </div>
                 :
-                <div>Eliga una tarea a realizar en este momento</div>
+                <div className=' text-center'>Eliga una tarea a realizar en este momento</div>
             }
       </div>
     </div>
