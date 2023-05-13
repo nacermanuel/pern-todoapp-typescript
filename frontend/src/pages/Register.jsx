@@ -17,7 +17,8 @@ export const Register = () => {
     };
     
     return (
-        <div className='flex flex-col justify-center items-center h-[100vh]'>
+        <div className='flex flex-col justify-center items-center h-[100vh] bg-[url(https://res.cloudinary.com/dbhtt5ozr/image/upload/v1682117898/IMAGEN_OPACIDA222_Mesa_de_trabajo_1_copia_2_ctbno3.png)]'>
+            <div className='bg-white flex flex-col justify-center items-center h-[90%] px-5 rounded-md'>
             <div className='pb-3'>
                 <img src={logo} alt="logo" />
             </div>
@@ -61,6 +62,7 @@ export const Register = () => {
             </form>
             <div className='pt-6'>
                 ¿Ya tienes una cuenta? <a href="" className=' font-bold'>Iniciar Sesion</a>
+            </div>
             </div>
         </div>
 
