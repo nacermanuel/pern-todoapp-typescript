@@ -2,6 +2,7 @@ import React, { useState} from 'react'
 import TextField from '@mui/material/TextField';
 import { Button } from '@mui/material';
 import  logo  from '../resources/logo.png'
+import { Link } from "react-router-dom";
 
 export const Login = () => {
     const [email, setEmail] = useState('');
@@ -43,8 +44,8 @@ export const Login = () => {
                     Registrarse
                 </Button>
             </form>
-            <div className='pt-6'>
-                ¿Aún no tienes una cuenta? <a href="/register" className=' font-bold'>Registrarse</a>
+            <div className='pt-6 flex '>
+                ¿Aún no tienes una cuenta? <Link to="/register"> <p className='font-bold'>Registrarse</p> </Link>
             </div>
             </div>
             <Button type="submit" variant="contained" color="secondary" sx={{ marginTop: 3  }} onClick={()=>{
