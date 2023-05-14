@@ -34,6 +34,7 @@ export const Register = () => {
             if( typeof data =='object' ){
                 setRespuesta(true)
                 console.log('Usuario creado');
+                console.log(data);
             }else{
                 setError('No se puede crear usuario, información incorrecta')
                 console.log(data);
