@@ -96,13 +96,13 @@ export const Register = () => {
                     </form>
                     { !!error.length && <p className='text-red-600 text-sm'>Error: {error}</p> }
                     <div className='pt-6 flex'>
-                        ¿Ya tienes una cuenta?<Link to="/login"> <p className='font-bold'>Iniciar Sesion</p> </Link>
+                        ¿Ya tienes una cuenta?<Link to="/"> <p className='font-bold'>Iniciar Sesion</p> </Link>
                     </div>
                     </>
                     :
                     <>
                     <h3>Usuario Creado con éxito. </h3>
-                    <Link to="/login"><Button variant="contained" color="primary">Iniciar Sesion</Button> </Link>
+                    <Link to="/"><Button variant="contained" color="primary">Iniciar Sesion</Button> </Link>
                     </>
             }
 

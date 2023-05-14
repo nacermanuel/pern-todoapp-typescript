@@ -37,7 +37,7 @@ const Dashboard = () => {
 
       :
       
-      <div><p>Debe iniciar sesion </p><Link to="/login"><p className='font-bold'>Iniciar Sesion</p></Link></div>
+      <div><p>Debe iniciar sesion </p><Link to="/"><p className='font-bold'>Iniciar Sesion</p></Link></div>
 
 
     
