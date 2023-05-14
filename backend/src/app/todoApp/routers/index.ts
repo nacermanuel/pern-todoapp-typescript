@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { userRouter } from "./UserRoutes";
 import { taskRouter } from "./TaskRoutes";
-import { authRouter } from "./LogInRoute";
+import { authRouter } from "./AuthRoute";
 import { ListTaskRouter } from "./ListTaskRoute";
 import { tokenValidator } from "../../shared/framework/middleware/tokeValidator";
 

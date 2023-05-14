@@ -7,6 +7,6 @@ export const apiCreateUser =  async (user) => {
     };
 
     return axios
-            .post(`http://localhost:9000/api/user`, user, { headers })
+            .post(`http://localhost:9000/api/auth/register`, user, { headers })
             .then((response) => response.data )
 }

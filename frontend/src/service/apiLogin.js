@@ -7,6 +7,6 @@ export const apiLogin =  async (credentials) => {
     };
 
     return axios
-            .post(`http://localhost:9000/api//auth/login`, credentials, { headers })
+            .post(`http://localhost:9000/api/auth/login`, credentials, { headers })
             .then((response) => response.data )
 }
