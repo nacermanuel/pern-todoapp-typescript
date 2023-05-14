@@ -11,10 +11,14 @@ class LogInUseCase {
         const userFound = await this._userrepository.findByEmail(email)
 
         if(!userFound){
+            console.log('LOGIN USE CASE usuario null');
+            
             return null
         }
 
         if(userFound.password !== password){
+            console.log('LOGIN USE CASE  clave no coincide');
+            
             return null
         }
 

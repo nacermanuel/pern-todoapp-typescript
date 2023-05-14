@@ -3,12 +3,14 @@ import { userRouter } from "./UserRoutes";
 import { taskRouter } from "./TaskRoutes";
 import { authRouter } from "./LogInRoute";
 import { ListTaskRouter } from "./ListTaskRoute";
+import { tokenValidator } from "../../shared/framework/middleware/tokeValidator";
 
 const mainRouter = Router()
 
+mainRouter.use(authRouter) ;
+mainRouter.use(tokenValidator)
 mainRouter.use(userRouter) ;
 mainRouter.use(taskRouter) ;
-mainRouter.use(authRouter) ;
 mainRouter.use(ListTaskRouter) ;
 
 export { mainRouter };

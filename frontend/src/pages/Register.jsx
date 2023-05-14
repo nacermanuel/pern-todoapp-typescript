@@ -24,7 +24,6 @@ export const Register = () => {
             return setError('Ingrese un email valido.')
         }
 
-        console.log(apellido.length);
 
         let user = { name: name , lastName: apellido, email: email, password: password }
         let userJson = JSON.stringify(user)

@@ -77,7 +77,7 @@ const tareasSlice = createSlice({
         builder.addCase(fetchTareas.rejected, (state, action) => {
             state.loading = false
             state.tareas = []
-            state.error = action.error.message
+            state.error = `API Call fetchTareas rechazado: ${action.error.message}`
         })
         builder.addCase(updateDataBase.pending, (state) => {
 

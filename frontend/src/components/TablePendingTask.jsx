@@ -11,7 +11,7 @@ export default function TablePendingTask() {
     <div className='bg-slate-300 h-[77vh] w-[27vw] p-3 rounded-md shadow-[0_0_10px_4px_rgba(0,0,0)]'>
       <div className=' h-[63vh] overflow-y-auto'>
         { reduxState.loading && <div>Loading</div> }
-        { !reduxState.loading && reduxState.error ? <div>Error: {reduxState.error}</div> : null}
+        { !reduxState.loading && reduxState.error ? <div>{reduxState.error}</div> : null}
         { !reduxState.loading && reduxState.tareas.length ?
         <Stack spacing={1} sx={{ alignItems:'center', paddingTop:'5px' }} > {/*https://mui.com/material-ui/react-stack/ */}
           { reduxState.todo &&

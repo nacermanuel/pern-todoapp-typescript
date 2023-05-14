@@ -13,10 +13,8 @@ class FindByUserIdListTaskController{
     }
 
     async run(req: Request, res: Response): Promise<void> {
-        const  userId  = 'b3ed8513-9f10-4b56-92c4-86eec76d19e7'
-        //IMPLEMENTAR QUE EL ID LO TOME DE LA SESION INICIADA. COMO EN NO COUNTRY
-        //IMPLEMENTAR QUE EL ID LO TOME DE LA SESION INICIADA. COMO EN NO COUNTRY
-        //IMPLEMENTAR QUE EL ID LO TOME DE LA SESION INICIADA. COMO EN NO COUNTRY
+        //@ts-ignore
+        const  userId  = req.customInfo
 
         const data = await this._findbyuseridusecase.run(userId)
         

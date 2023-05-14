@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
-import jwt from 'jsonwebtoken';
+import jwt, { Secret } from 'jsonwebtoken';
 import dotenv from "dotenv"
-
+dotenv.config();
 import { LogInUseCase } from "../../../../contexts/todoApp/Auth/application/LogInUseCase";
 import { UserRepository } from "../../../../contexts/todoApp/User/domain/repository/UserRepository";
 import { SequelizeUserImpl } from "../../../../contexts/todoApp/User/infrastructure/persistence/sequelize/SequelizeUserImpl";
@@ -36,9 +36,15 @@ class LogInController{
             throw new Error("LogInController Response: Error email does not exist or password incorrect")
         }
 
+        const secretKey: Secret | undefined = process.env.JWT_PASS;
+
+        if (!secretKey) {
+        throw new Error('JWT secret key is not defined.');
+        }
+
         const token = jwt.sign(
-            { id: user.id },
-            '12345', // AQUI DEBERIA DE VENIR PROCESS.ENV.JWTPASS
+             {id: user.id} , 
+             secretKey,
             {
               expiresIn: "1h",
             },
