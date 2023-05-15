@@ -29,7 +29,7 @@ const tokenValidator = (req: Request, res: Response, next: NextFunction) => {
       throw new Error('error de verificacion de token')
     }
   }else{
-    res.status(401).send('Acceso Negado')
+    res.status(401).send('Acceso Negado en token validator archivo')
     
   }
 
