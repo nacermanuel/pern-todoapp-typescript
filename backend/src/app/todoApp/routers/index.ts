@@ -8,7 +8,7 @@ import { tokenValidator } from "../../shared/framework/middleware/tokeValidator"
 const mainRouter = Router()
 
 mainRouter.use(authRouter) ;
-mainRouter.use(tokenValidator)
+//mainRouter.use(tokenValidator)
 mainRouter.use(userRouter) ;
 mainRouter.use(taskRouter) ;
 mainRouter.use(ListTaskRouter) ;
