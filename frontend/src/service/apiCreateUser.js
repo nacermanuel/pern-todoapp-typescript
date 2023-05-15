@@ -1,4 +1,5 @@
 import axios from 'axios' ;
+import { url } from './url';
 
 export const apiCreateUser =  async (user) => {
 
@@ -7,6 +8,6 @@ export const apiCreateUser =  async (user) => {
     };
 
     return axios
-            .post(`http://localhost:9000/api/auth/register`, user, { headers })
+            .post(`https://${url}/api/auth/register`, user, { headers })
             .then((response) => response.data )
 }

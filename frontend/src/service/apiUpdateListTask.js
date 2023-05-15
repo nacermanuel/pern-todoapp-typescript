@@ -1,4 +1,5 @@
 import axios from 'axios' ;
+import { url } from './url';
 
 export const apiUpdateListTask =  async (task) => {
 
@@ -10,6 +11,6 @@ export const apiUpdateListTask =  async (task) => {
     };
     
     return axios
-            .post(`http://localhost:9000/api/listupdate`, task, { headers })
+            .post(`https://${url}/api/listupdate`, task, { headers })
             .then((response) => response.data )
 }

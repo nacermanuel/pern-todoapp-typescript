@@ -1,4 +1,5 @@
 import axios from 'axios' ;
+import { url } from './url';
 
 export const apiCallTareas =  async () => {
  
@@ -9,7 +10,6 @@ export const apiCallTareas =  async () => {
     };
 
     return axios
-            //.get(`http://localhost:9000/api/task?id=${id}`)
-            .get(`http://localhost:9000/api/list`, { headers })
+            .get(`https://${url}/api/list`, { headers })
             .then((response) => response.data.tasks )
 }

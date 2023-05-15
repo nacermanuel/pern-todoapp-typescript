@@ -1,4 +1,5 @@
 import axios from 'axios' ;
+import { url } from './url';
 
 export const apiLogin =  async (credentials) => {
 
@@ -7,6 +8,6 @@ export const apiLogin =  async (credentials) => {
     };
 
     return axios
-            .post(`http://localhost:9000/api/auth/login`, credentials, { headers })
+            .post(`https://${url}/api/auth/login`, credentials, { headers })
             .then((response) => response.data )
 }
