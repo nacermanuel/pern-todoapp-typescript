@@ -14,6 +14,7 @@ function App() {
       <BrowserRouter>
         <Container>
           <AppRouter/>
+          <p className='text-xs'>developed by Manuel Nácer - nacermanuel@gmail.com</p>
         </Container>
       </BrowserRouter>
     </Provider>
