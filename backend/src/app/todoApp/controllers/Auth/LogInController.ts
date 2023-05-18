@@ -44,10 +44,7 @@ class LogInController{
 
         const token = jwt.sign(
              {id: user.id} , 
-             secretKey,
-            {
-              expiresIn: "1h",
-            },
+             secretKey
         )
 
         res.status(200).json({
